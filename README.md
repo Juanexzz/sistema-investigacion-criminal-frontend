@@ -16,6 +16,8 @@ Aplicación web desarrollada con **Next.js 14 (App Router), React 18, TypeScript
 > Los enlaces definitivos de producción son configurados por el equipo:
 - **Frontend en Producción (Vercel)**: `https://[COMPLETAR_POR_EL_EQUIPO].vercel.app`
 - **Backend API (Render)**: `https://[COMPLETAR_POR_EL_EQUIPO].onrender.com/api`
+- **Repositorio Hermano (Backend)**: https://github.com/Juanexzz/sistema-investigacion-criminal-backend
+- **Monorepo Original**: https://github.com/juanfer2006/patria_milagro_web
 
 ---
 
@@ -84,10 +86,7 @@ La identidad gráfica y visual de toda la aplicación fue construida bajo la dir
 
 ## 8. Instalación y Ejecución Local
 
-1. Acceder a la carpeta del frontend:
-   ```bash
-   cd frontend
-   ```
+1. Ubicarse en la raíz del repositorio frontend.
 2. Instalar dependencias exactas:
    ```bash
    npm ci
@@ -103,9 +102,8 @@ La identidad gráfica y visual de toda la aplicación fue construida bajo la dir
 ## 9. Despliegue en Vercel
 
 1. Importar el repositorio en el panel de [Vercel](https://vercel.com).
-2. Seleccionar el subdirectorio raíz: `frontend`.
-3. Framework Preset: **Next.js**.
-4. Configurar la variable de entorno:
+2. Framework Preset: **Next.js**.
+3. Configurar la variable de entorno:
    - `NEXT_PUBLIC_API_HOST`: `https://[COMPLETAR_POR_EL_EQUIPO].onrender.com`
-5. Desplegar el proyecto.
-6. Copiar el dominio asignado por Vercel y actualizar la variable `CORS_ORIGIN` en el panel de Render del backend.
+4. Desplegar el proyecto.
+5. Copiar el dominio asignado por Vercel y actualizar la variable `CORS_ORIGIN` en el panel de Render del backend.
