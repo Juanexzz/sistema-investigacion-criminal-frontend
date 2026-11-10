@@ -4,45 +4,18 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Calendar, MapPin, Edit, Trash2, Users, Lock } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Edit, Trash2, Lock } from 'lucide-react';
 import { Case, formatCaseCode } from '../domain/case';
 import { casesService } from '../services/cases.service';
 import { CaseStatusBadge } from './CaseStatusBadge';
 import { ConfirmDialog, Button, ErrorState } from '../../common/components';
+import { isApiError } from '../../common/domain/api-error';
 import { EvidencesSection } from '../../evidences';
 import { SuspectsSection } from '../../suspects';
 
 export interface CaseDetailViewProps {
   caseData: Case;
 }
-
-// Marcador local para SuspectsSection (Rebanada C) con contrato idéntico { caseId, isCaseClosed }
-export const SuspectsSectionPlaceholder: React.FC<{
-  caseId: string;
-  isCaseClosed: boolean;
-}> = ({ caseId: _caseId, isCaseClosed }) => (
-  <div className="border border-dashed border-grafito-light bg-grafito p-6 space-y-3">
-    <div className="flex items-center justify-between pb-2 border-b border-grafito-light">
-      <div className="flex items-center gap-2">
-        <Users className="w-5 h-5 text-alerta" />
-        <h3 className="font-serif text-lg text-papel">Personas de Interés y Sospechosos</h3>
-      </div>
-      <span className="font-mono text-[10px] text-alerta uppercase tracking-widest">
-        [REBANADA C EN DESARROLLO]
-      </span>
-    </div>
-    <p className="text-xs text-papel-muted leading-relaxed">
-      Esta sección listará los sospechosos vinculados a este expediente y permitirá asociar nivel de
-      sospecha (0-100) y fotografía.
-      {isCaseClosed && (
-        <span className="block text-evidencia mt-1 font-mono">
-          * El expediente está cerrado: la adición de nuevos sospechosos está deshabilitada (Regla
-          3).
-        </span>
-      )}
-    </p>
-  </div>
-);
 
 export const CaseDetailView: React.FC<CaseDetailViewProps> = ({ caseData }) => {
   const router = useRouter();
@@ -72,7 +45,7 @@ export const CaseDetailView: React.FC<CaseDetailViewProps> = ({ caseData }) => {
       setIsDeleting(false);
       setShowDeleteConfirm(false);
       setDeleteError(
-        err instanceof Error ? err.message : 'No fue posible eliminar el expediente criminal',
+        isApiError(err) ? err.message : 'No fue posible eliminar el expediente criminal',
       );
     }
   };
