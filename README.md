@@ -27,6 +27,11 @@
    - **Administrador**: `admin@forense.test` | Contraseña: `Admin2026!`  
      *(Acceso global a todos los casos y al panel administrativo `/admin`)*
 
+> [!TIP]
+> **Monitoreo automático para mantener Render activo (sin tocar código)**:  
+> Para evitar la espera inicial de 30-50 segundos por inactividad de Render, es posible crear un monitor HTTP gratuito en [UptimeRobot](https://uptimerobot.com) que consulte el endpoint `https://sistema-investigacion-criminal-backend.onrender.com/api/health` cada 5 minutos. Esto mantiene la instancia activa continuamente sin costo.
+
+
 ---
 
 ### Opción B: Ejecución en Entorno Local
@@ -57,11 +62,11 @@
 
 ## 2. Enlaces del Proyecto
 
-- **Frontend en Producción (Vercel)**: `https://sistema-investigacion-criminal-fron.vercel.app`
-- **Backend API (Render)**: `https://sistema-investigacion-criminal-backend.onrender.com`
-- **Health Check del Backend**: `https://sistema-investigacion-criminal-backend.onrender.com/api/health`
-- **Repositorio Hermano (Backend)**: https://github.com/Juanexzz/sistema-investigacion-criminal-backend
-- **Monorepo Histórico Original**: https://github.com/juanfer2006/patria_milagro_web
+- **Frontend en Producción (Vercel)**: [https://sistema-investigacion-criminal-fron.vercel.app](https://sistema-investigacion-criminal-fron.vercel.app)
+- **Backend API (Render)**: [https://sistema-investigacion-criminal-backend.onrender.com](https://sistema-investigacion-criminal-backend.onrender.com)
+- **Health Check del Backend**: [https://sistema-investigacion-criminal-backend.onrender.com/api/health](https://sistema-investigacion-criminal-backend.onrender.com/api/health)
+- **Repositorio Hermano (Backend)**: [https://github.com/Juanexzz/sistema-investigacion-criminal-backend](https://github.com/Juanexzz/sistema-investigacion-criminal-backend)
+- **Monorepo Histórico Original**: [https://github.com/juanfer2006/patria_milagro_web](https://github.com/juanfer2006/patria_milagro_web)
 
 ---
 

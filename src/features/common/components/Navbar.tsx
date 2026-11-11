@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               href={isAuthenticated ? '/cases' : '/'}
-              className="flex items-center gap-2 group focus:outline-none focus:ring-1 focus:ring-alerta"
+              className="flex items-center gap-2 group outline-none focus:outline-none select-none"
               aria-label="Ir a inicio de Expediente Forense"
             >
               <div className="w-8 h-8 bg-grafito-dark border border-grafito-light flex items-center justify-center text-alerta group-hover:border-alerta transition-colors">

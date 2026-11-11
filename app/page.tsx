@@ -29,7 +29,7 @@ export default function HomePage() {
       {/* ===================================================================
           1. HERO SECTION: PORTADA DEL EXPEDIENTE FORENSE NOIR
          =================================================================== */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-grafito-light/80 bg-gradient-to-b from-grafito-dark via-tinta to-grafito-dark/60">
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-grafito-light/80 hero-noir-bg">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Sello de Clasificación */}
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -198,7 +198,7 @@ export default function HomePage() {
                 <FileSearch className="w-5 h-5" />
               </div>
               <span className="font-mono text-[10px] text-alerta tracking-widest uppercase">
-                RECURSO III &bull; REBANADA D
+                RECURSO III
               </span>
               <h3 className="font-serif text-lg text-papel">Evidencias y Peritaje</h3>
               <p className="text-xs text-papel-dark font-sans leading-relaxed">

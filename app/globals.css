@@ -108,6 +108,50 @@
   color: #14171a !important;
 }
 
+[data-theme='light'] .bg-grafito\/95 {
+  background-color: rgba(231, 223, 204, 0.95) !important;
+}
+
+[data-theme='light'] .bg-grafito-dark\/70 {
+  background-color: rgba(220, 206, 184, 0.45) !important;
+}
+
+[data-theme='light'] .bg-grafito-dark\/40 {
+  background-color: rgba(220, 206, 184, 0.4) !important;
+}
+
+[data-theme='light'] .bg-grafito-light\/50 {
+  background-color: rgba(203, 190, 170, 0.5) !important;
+}
+
+[data-theme='light'] .bg-grafito-light\/30 {
+  background-color: rgba(203, 190, 170, 0.3) !important;
+}
+
+[data-theme='light'] .bg-tinta\/80 {
+  background-color: rgba(245, 239, 225, 0.85) !important;
+}
+
+[data-theme='light'] .border-grafito-light\/80 {
+  border-color: rgba(184, 172, 149, 0.8) !important;
+}
+
+[data-theme='light'] .border-grafito-light\/50 {
+  border-color: rgba(184, 172, 149, 0.5) !important;
+}
+
+[data-theme='light'] .border-grafito-light\/90 {
+  border-color: rgba(184, 172, 149, 0.9) !important;
+}
+
+.hero-noir-bg {
+  background-image: linear-gradient(to bottom, #131518, #0e1013, rgba(19, 21, 24, 0.6));
+}
+
+[data-theme='light'] .hero-noir-bg {
+  background-image: linear-gradient(to bottom, #e7dfcc, #f5efe1, rgba(231, 223, 204, 0.6)) !important;
+}
+
 /* =======================================================================
    ESTILOS GENERALES Y FORENSE NOIR
    ======================================================================= */

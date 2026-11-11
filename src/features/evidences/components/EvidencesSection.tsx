@@ -136,7 +136,7 @@ export const EvidencesSection: React.FC<EvidencesSectionProps> = ({ caseId, isCa
           <Lock className="w-4 h-4 text-alerta shrink-0 mt-0.5" aria-hidden="true" />
           <div>
             <strong className="text-alerta uppercase">
-              [REGISTRO BLOQUEADO POR CASO CERRADO &bull; REGLA 3]
+              [REGISTRO BLOQUEADO POR CASO CERRADO]
             </strong>
             <p className="mt-0.5 text-papel-dark leading-relaxed font-sans">
               No es posible incorporar nuevas evidencias a una investigación archivada o concluida.
