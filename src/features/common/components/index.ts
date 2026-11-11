@@ -8,4 +8,5 @@ export * from './ThemeToggle';
 export * from './Navbar';
 export * from './Footer';
 export * from './ImageUpload';
+export * from './ProfileSettingsModal';
 export * from './shared-components';

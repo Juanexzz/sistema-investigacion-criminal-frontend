@@ -16,9 +16,12 @@ export interface AuthContextType {
   login: (credentials: LoginPayload) => Promise<void>;
   register: (payload: RegisterPayload) => Promise<void>;
   logout: () => void;
+  updateUser: (partial: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const USER_OVERRIDE_KEY = 'crime_report_user_override';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -45,7 +48,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     try {
       const currentUser = await authService.getCurrentUser();
-      setUser(currentUser);
+      let mergedUser = currentUser;
+
+      if (typeof window !== 'undefined') {
+        const storedOverride = localStorage.getItem(USER_OVERRIDE_KEY);
+        if (storedOverride) {
+          try {
+            const parsed = JSON.parse(storedOverride);
+            if (parsed.id === currentUser.id) {
+              mergedUser = { ...currentUser, ...parsed };
+            }
+          } catch {
+            localStorage.removeItem(USER_OVERRIDE_KEY);
+          }
+        }
+      }
+
+      setUser(mergedUser);
     } catch {
       Cookies.remove(TOKEN_COOKIE_NAME, { path: '/' });
       setUser(null);
@@ -94,8 +113,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = (): void => {
     Cookies.remove(TOKEN_COOKIE_NAME, { path: '/' });
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(USER_OVERRIDE_KEY);
+    }
     setUser(null);
     router.push('/login');
+  };
+
+  const updateUser = (partial: Partial<User>): void => {
+    setUser((prev) => {
+      if (!prev) return null;
+      const updated = { ...prev, ...partial };
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem(USER_OVERRIDE_KEY, JSON.stringify(updated));
+        } catch {
+          // ignore
+        }
+      }
+      return updated;
+    });
   };
 
   return (
@@ -108,6 +145,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         login,
         register,
         logout,
+        updateUser,
       }}
     >
       {children}
