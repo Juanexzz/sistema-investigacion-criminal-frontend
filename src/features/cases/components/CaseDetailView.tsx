@@ -22,6 +22,7 @@ export const CaseDetailView: React.FC<CaseDetailViewProps> = ({ caseData }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   const isCaseClosed = caseData.status === 'CLOSED';
 
@@ -131,7 +132,7 @@ export const CaseDetailView: React.FC<CaseDetailViewProps> = ({ caseData }) => {
         </div>
 
         {/* Fotografía de la escena / archivo adjunto */}
-        {caseData.imageUrl && (
+        {caseData.imageUrl && !imageError && (
           <div className="space-y-2">
             <span className="block font-mono text-[10px] text-papel-muted uppercase tracking-widest">
               REGISTRO FOTOGRÁFICO DE LA ESCENA // ARCHIVO DE EVIDENCIA
@@ -142,6 +143,7 @@ export const CaseDetailView: React.FC<CaseDetailViewProps> = ({ caseData }) => {
                 alt={caseData.title}
                 fill
                 unoptimized
+                onError={() => setImageError(true)}
                 className="object-cover"
               />
               <div className="absolute top-3 left-0 bg-alerta text-tinta font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 shadow-lg">

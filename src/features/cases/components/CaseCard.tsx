@@ -11,6 +11,7 @@ export interface CaseCardProps {
 }
 
 export const CaseCard: React.FC<CaseCardProps> = ({ caseItem, onDeleteRequest }) => {
+  const [imageError, setImageError] = React.useState(false);
   const formattedDate = new Date(caseItem.incidentDate).toLocaleDateString('es-CO', {
     year: 'numeric',
     month: 'short',
@@ -21,13 +22,14 @@ export const CaseCard: React.FC<CaseCardProps> = ({ caseItem, onDeleteRequest })
     <article className="group relative flex flex-col justify-between border border-grafito-light bg-grafito hover:border-alerta/50 transition-colors shadow-lg overflow-hidden">
       <div>
         {/* Encabezado visual: imagen o marcador forense */}
-        {caseItem.imageUrl ? (
+        {caseItem.imageUrl && !imageError ? (
           <div className="relative w-full h-44 overflow-hidden border-b border-grafito-light bg-grafito-dark">
             <Image
               src={caseItem.imageUrl}
               alt={caseItem.title}
               fill
               unoptimized
+              onError={() => setImageError(true)}
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
             {/* Cinta de evidencia en la portada */}
