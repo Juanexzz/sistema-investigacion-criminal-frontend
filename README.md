@@ -27,11 +27,6 @@
    - **Administrador**: `admin@forense.test` | Contraseña: `Admin2026!`  
      *(Acceso global a todos los casos y al panel administrativo `/admin`)*
 
-> [!TIP]
-> **Monitoreo automático para mantener Render activo (sin tocar código)**:  
-> Para evitar la espera inicial de 30-50 segundos por inactividad de Render, es posible crear un monitor HTTP gratuito en [UptimeRobot](https://uptimerobot.com) que consulte el endpoint `https://sistema-investigacion-criminal-backend.onrender.com/api/health` cada 5 minutos. Esto mantiene la instancia activa continuamente sin costo.
-
-
 ---
 
 ### Opción B: Ejecución en Entorno Local
