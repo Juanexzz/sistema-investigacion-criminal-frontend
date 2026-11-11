@@ -152,11 +152,25 @@ NEXT_PUBLIC_API_HOST=https://sistema-investigacion-criminal-backend.onrender.com
 
 ---
 
-## 11. Despliegue en Vercel
+## 11. Arquitectura de Despliegue Frontend y Entrega Continua (CI/CD)
 
-1. Importar el repositorio en el panel de [Vercel](https://vercel.com).
-2. Framework Preset: **Next.js**.
-3. Configurar la variable de entorno:
-   - `NEXT_PUBLIC_API_HOST`: `https://sistema-investigacion-criminal-backend.onrender.com`
-4. Desplegar el proyecto.
-5. Copiar el dominio asignado por Vercel (`https://sistema-investigacion-criminal-fron.vercel.app`) y registrarlo exactamente en la variable `CORS_ORIGIN` del servicio en Render del backend.
+El frontend se encuentra alojado y orquestado en la plataforma **Vercel**, aprovechando la infraestructura global de borde (Edge Network) y las capacidades de Next.js App Router:
+
+### 11.1. Topología y Modelo de Ejecución
+- **Infraestructura de Borde (Edge Distribution)**: Distribución global en CDN de alto rendimiento, optimizando tiempos de respuesta (TTFB) y entrega de bundles estáticos.
+- **Estrategia Híbrida de Renderizado**:
+  - **Static Site Generation (SSG)**: Vistas estructurales (`/`, `/login`, `/register`, `/cases/new`) prerenderizadas en tiempo de compilación para máxima velocidad de carga.
+  - **Dynamic Server-Side Rendering (SSR)**: Vistas parametrizadas (`/cases/[id]`, `/cases/[id]/edit`) resueltas dinámicamente para garantizar la consistencia en tiempo real de los expedientes.
+- **Seguridad Perimetral en el Edge**: El archivo `middleware.ts` intercepta cada petición entrante en los puntos de presencia (PoPs) antes de alcanzar la lógica de interfaz, validando la cookie `cr_token` y autorizando el acceso por roles con latencia mínima.
+
+### 11.2. Pipeline Automatizado de Integración y Entrega Continua (CI/CD)
+Cada confirmación en la rama `main` del repositorio dispara automáticamente el ciclo de verificación y despliegue en Vercel:
+1. **Auditoría de Código y Calidad (`next lint`)**: Validación estricta de sintaxis, reglas de accesibilidad y estándares de código.
+2. **Validación Estricta de Tipos (`tsc --noEmit`)**: Comprobación estática de tipos TypeScript sobre el 100% de los componentes y contratos de datos.
+3. **Compilación y Empaquetado (`next build`)**: Optimización de chunks de JavaScript compartidos, minimización de estilos con Tailwind CSS y generación del árbol de rutas.
+4. **Asignación Automática de Producción**: Vinculación atómica e inmediata con el dominio canónico `https://sistema-investigacion-criminal-fron.vercel.app`.
+
+### 11.3. Sincronización Segura con el Backend
+La comunicación entre la interfaz de usuario y la API de Render opera bajo un esquema de origen cruzado estrictamente validado:
+- **`NEXT_PUBLIC_API_HOST`**: Apunta al endpoint canónico del backend (`https://sistema-investigacion-criminal-backend.onrender.com`).
+- **Política CORS Estricta**: El backend rechaza peticiones que no provengan exactamente del origen registrado de Vercel, mitigando riesgos de suplantación o solicitudes no autorizadas desde navegadores externos.
