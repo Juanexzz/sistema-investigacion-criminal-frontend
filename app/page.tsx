@@ -71,7 +71,7 @@ export default function HomePage() {
                     </span>
                   </div>
                   <span className="font-mono text-[11px] text-papel-muted">
-                    {user?.role === 'ADMIN' ? 'COMISARIO / ADMIN' : 'DETECTIVE / INVESTIGADOR'}
+                    {user?.role === 'ADMIN' ? 'COMISARIO' : 'DETECTIVE'}
                   </span>
                 </div>
 

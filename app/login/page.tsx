@@ -59,7 +59,7 @@ function LoginFormInner() {
               Acceso a Expedientes
             </h1>
           </div>
-          <span className="font-mono text-xs text-papel-muted">AUTH-01</span>
+          
         </div>
 
         {expiredNotice && (
