@@ -66,6 +66,9 @@ export const SuspectsSection: React.FC<SuspectsSectionProps> = ({ caseId, isCase
     } else {
       await createSuspect(data as CreateSuspectInput);
     }
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('suspects:changed', { detail: { caseId } }));
+    }
   };
 
   const handleDeleteConfirm = async () => {
@@ -74,6 +77,9 @@ export const SuspectsSection: React.FC<SuspectsSectionProps> = ({ caseId, isCase
       setIsDeleting(true);
       await deleteSuspect(suspectToDelete.id);
       setSuspectToDelete(null);
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('suspects:changed', { detail: { caseId } }));
+      }
     } finally {
       setIsDeleting(false);
     }
